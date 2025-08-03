@@ -1,7 +1,7 @@
 import "./style.css";
 import typescriptLogo from "./typescript.svg";
 import viteLogo from "/vite.svg";
-import { setupCounter } from "./counter.ts";
+
 import io from "socket.io-client";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
@@ -26,4 +26,4 @@ const socket = io('http://socket-chat-example-4ifd.onrender.com');
 
 
 
-console.log(12345)
+console.log(socket)
