@@ -1,0 +1,19 @@
+{
+   "name": "socket-chat-example-2",
+   "version": "0.0.1",
+   "description": "my first socket.io app",
+   "author": "han-wong",
+   "dependencies": {
+      "socket.io-client": "^4.8.1",
+      "typescript": "~5.8.3",
+      "vite": "^7.0.6"
+   },
+   "license": "MIT",
+   "private": false,
+   "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "preview": "vite preview"
+   },
+   "type": "module"
+}
