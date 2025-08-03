@@ -22,8 +22,21 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </div>
 `;
 
-const socket = io('http://socket-chat-example-4ifd.onrender.com');
+const socket = io(process.env.SOCKET_URL);
+const form = document.getElementById("form") as HTMLFormElement;
+const input = document.getElementById("input") as HTMLInputElement;
+const messages = document.getElementById("messages") as HTMLUListElement;
+form?.addEventListener("submit", (e) => {
+   e.preventDefault();
+   if (input?.value) {
+      socket.emit("chat message", input.value);
+      input.value = "";
+   }
+});
 
-
-
-console.log(socket)
+socket.on("chat message", (msg) => {
+   const item = document.createElement("li");
+   item.textContent = msg;
+   messages.appendChild(item);
+   window.scrollTo(0, document.body.scrollHeight);
+});
