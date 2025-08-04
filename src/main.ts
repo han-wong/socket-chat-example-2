@@ -1,7 +1,6 @@
 import "./style.css";
 import typescriptLogo from "./typescript.svg";
 import viteLogo from "/vite.svg";
-
 import io from "socket.io-client";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
@@ -22,12 +21,15 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </div>
 `;
 
-const socket = io(process.env.SOCKET_URL);
+const socket = io(import.meta.env.VITE_SOCKET_URL);
+console.log(import.meta.env.VITE_SOCKET_URL)
 const form = document.getElementById("form") as HTMLFormElement;
 const input = document.getElementById("input") as HTMLInputElement;
 const messages = document.getElementById("messages") as HTMLUListElement;
 form?.addEventListener("submit", (e) => {
    e.preventDefault();
+   debugger
+   socket
    if (input?.value) {
       socket.emit("chat message", input.value);
       input.value = "";
@@ -35,6 +37,7 @@ form?.addEventListener("submit", (e) => {
 });
 
 socket.on("chat message", (msg) => {
+    debugger
    const item = document.createElement("li");
    item.textContent = msg;
    messages.appendChild(item);
